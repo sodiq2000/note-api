@@ -1,13 +1,19 @@
-const express = require('express');
-const { getNotes, createNote, getNote, updateNote, deleteNote } = require('../controllers/')
+const express = require("express");
+const {
+  getNotes,
+  createNote,
+  getNote,
+  updateNote,
+  deleteNote,
+} = require("../controllers/notes");
+const auth = require('../middleware/auth')
 
 const router = express.Router();
 
-router.get("/", express.json({ message: "service is up!" }));
-router.get('/notes/all', getNotes);
-router.get('/notes/:id', getNote)
-router.post('/notes/create', createNote);
-router.patch('/notes/:id', updateNote)
-router.delete('/notes/:id', deleteNote)
+router.get("/all", auth, getNotes);
+router.get("/:id", auth, getNote);
+router.post("/create", auth, createNote);
+router.put("/:id", auth, updateNote);
+router.delete("/:id", auth, deleteNote);
 
 module.exports = router;
