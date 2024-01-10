@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const bodyParser = require('body-parser')
+const authRoutes = require('./routes/auth');
 const noteRoutes = require('./routes/notes');
 const userRoutes = require('./routes/users')
 
@@ -18,8 +19,9 @@ app.use(cors());
 app.get('/', (req, res) => {
     res.json({ message: 'Service is up!'})
 })
+app.use('/api/v1/auth', authRoutes)
 app.use('/api/v1/secure/notes', noteRoutes)
-app.use('/api/v1', userRoutes)
+app.use('/api/v1/secure/users', userRoutes)
 
 const CONN_URL = process.env.CONN_URL;
 const PORT = process.env.PORT || 5000;

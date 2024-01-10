@@ -15,7 +15,7 @@ const getNotes = async (req, res) => {
 const getNote = async (req, res) => {
   try {
     const id = req.params.id;
-    
+
     if (!mongoose.Types.ObjectId.isValid(id))
       return res.status(404).send({ message: `No note with id: ${id}` });
 
@@ -62,6 +62,9 @@ const updateNote = async (req, res) => {
 const deleteNote = async (req, res) => {
   try {
     const id = req.params.id;
+    if (!mongoose.Types.ObjectId.isValid(id))
+      return res.status(404).send({ message: `No note with id: ${id}` });
+    
     const Note = await NoteModel.findByIdAndDelete(id);
     res
       .status(200)
