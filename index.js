@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const authRoutes = require('./routes/auth');
 const noteRoutes = require('./routes/notes');
 const userRoutes = require('./routes/users')
+const otpRoutes = require('./routes/otp')
 
 require('dotenv').config()
 
@@ -22,6 +23,7 @@ app.get('/', (req, res) => {
 app.use('/api/v1/auth', authRoutes)
 app.use('/api/v1/secure/notes', noteRoutes)
 app.use('/api/v1/secure/users', userRoutes)
+app.use("/api/v1", otpRoutes);
 
 const CONN_URL = process.env.CONN_URL;
 const PORT = process.env.PORT || 5000;
