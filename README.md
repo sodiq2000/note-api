@@ -8,3 +8,4 @@ Notes API is a simple API to create, add, edit and delete notes
 - JWT Authentication and Authorization
 - NOTE CRUD
 - NewsLetter Subscription
+- Other Features
